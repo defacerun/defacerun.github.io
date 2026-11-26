@@ -1,0 +1,1089 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>www.17c.cm_视频品牌与创作社区_短片直播频道</title>
+<meta name="description" content="www.17c.cm 是一个聚焦原创短片与直播内容的视频品牌站点，提供品牌自制剧集、创作者扶持计划、频道分类、更新动态与深度解析，适合短片爱好者与创作者浏览。">
+<meta name="keywords" content="原创短片,视频品牌,直播频道,创作者社区,自制剧集">
+<style>
+:root{
+  --bg:#0d0f14;
+  --bg-soft:#141821;
+  --panel:#1a1f2b;
+  --panel-2:#212736;
+  --line:#2b3243;
+  --text:#eef1f6;
+  --text-2:#a7b0c0;
+  --text-3:#788296;
+  --brand:#ff4d5e;
+  --brand-2:#ff8a3d;
+  --accent:#3dc9b0;
+  --accent-2:#7b8cff;
+  --radius:14px;
+  --radius-sm:8px;
+  --shadow:0 10px 30px rgba(0,0,0,.35);
+  --maxw:1320px;
+  --ann-h:38px;
+  --head-h:64px;
+  --offset:calc(var(--ann-h) + var(--head-h) + 14px);
+  --font:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:var(--font);
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{margin:0;line-height:1.3;font-weight:700}
+p{margin:0 0 1em}
+ul,ol{margin:0 0 1em;padding-left:1.2em}
+section[id]{scroll-margin-top:var(--offset)}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+
+/* 公告条 */
+.annbar{
+  position:sticky;top:0;z-index:60;
+  height:var(--ann-h);
+  display:flex;align-items:center;
+  background:linear-gradient(90deg,#2a1220,#1a1f2b 45%,#12202a);
+  border-bottom:1px solid var(--line);
+  font-size:13px;color:var(--text-2);
+}
+.annbar .wrap{display:flex;align-items:center;gap:14px;width:100%;overflow:hidden}
+.ann-dot{width:8px;height:8px;border-radius:50%;background:var(--brand);flex:0 0 auto;box-shadow:0 0 0 4px rgba(255,77,94,.18)}
+.ann-tag{color:var(--brand);font-weight:700;flex:0 0 auto}
+.ann-track{display:flex;gap:26px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ann-track span{color:var(--text-2)}
+.ann-track b{color:var(--text);font-weight:600}
+
+/* 页头 */
+.header{
+  position:sticky;top:var(--ann-h);z-index:55;
+  height:var(--head-h);
+  background:rgba(13,15,20,.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.header .wrap{display:flex;align-items:center;gap:22px;height:100%}
+.brand{display:flex;align-items:center;gap:10px;flex:0 0 auto}
+.brand-mark{width:34px;height:34px;flex:0 0 auto}
+.brand-name{font-size:18px;font-weight:800;letter-spacing:.3px}
+.brand-name em{font-style:normal;color:var(--brand)}
+.nav{display:flex;gap:4px;margin-left:8px;flex-wrap:wrap}
+.nav a{
+  padding:7px 11px;border-radius:999px;font-size:14px;color:var(--text-2);
+  transition:.18s;white-space:nowrap;
+}
+.nav a:hover,.nav a:focus-visible{background:var(--panel-2);color:var(--text);outline:none}
+.head-actions{margin-left:auto;display:flex;align-items:center;gap:10px}
+.search{position:relative;display:flex;align-items:center}
+.search input{
+  width:190px;height:34px;border-radius:999px;border:1px solid var(--line);
+  background:var(--bg-soft);color:var(--text);padding:0 14px;font-size:13px;
+  font-family:var(--font);transition:.2s;
+}
+.search input:focus{outline:none;border-color:var(--brand);width:220px;box-shadow:0 0 0 3px rgba(255,77,94,.15)}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  height:34px;padding:0 15px;border-radius:999px;font-size:13px;font-weight:600;
+  border:1px solid transparent;cursor:pointer;font-family:var(--font);transition:.2s;
+}
+.btn-primary{background:var(--brand);color:#fff}
+.btn-primary:hover{background:#ff6472}
+.btn-ghost{background:transparent;border-color:var(--line);color:var(--text-2)}
+.btn-ghost:hover{border-color:var(--brand);color:var(--text)}
+.menu-toggle{display:none}
+
+/* 搜索无结果 */
+.no-result{
+  display:none;margin:10px 0 0;padding:10px 14px;border-radius:var(--radius-sm);
+  background:rgba(255,77,94,.1);border:1px solid rgba(255,77,94,.35);
+  font-size:13px;color:#ffb3ba;
+}
+.no-result.on{display:block}
+
+/* 首屏 */
+.hero{position:relative;overflow:hidden;padding:46px 0 40px;border-bottom:1px solid var(--line)}
+.hero-bg{position:absolute;inset:0;z-index:0;opacity:.55}
+.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.15fr .85fr;gap:38px;align-items:center}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.5px;
+  color:var(--accent);background:rgba(61,201,176,.1);border:1px solid rgba(61,201,176,.3);
+  padding:5px 12px;border-radius:999px;margin-bottom:18px;font-weight:600;
+}
+.hero h1{
+  font-size:clamp(30px,4.4vw,52px);letter-spacing:-.5px;margin-bottom:16px;
+  background:linear-gradient(100deg,#fff 20%,#ff8a3d 70%,#ff4d5e 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero-lead{font-size:15.5px;color:var(--text-2);max-width:560px;margin-bottom:24px}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:26px}
+.hero-cta .btn{height:42px;padding:0 22px;font-size:14px}
+.hero-stats{display:flex;gap:30px;flex-wrap:wrap}
+.hero-stats div{font-size:13px;color:var(--text-3)}
+.hero-stats strong{display:block;font-size:22px;color:var(--text);font-weight:800;letter-spacing:.5px}
+.hero-visual{position:relative}
+.hero-card{
+  background:linear-gradient(160deg,var(--panel-2),var(--panel));
+  border:1px solid var(--line);border-radius:18px;padding:16px;box-shadow:var(--shadow);
+}
+.hero-card .screen{border-radius:12px;overflow:hidden;border:1px solid var(--line);position:relative}
+.hero-card .screen img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
+.play-fab{
+  position:absolute;inset:0;display:grid;place-items:center;
+}
+.play-fab span{
+  width:56px;height:56px;border-radius:50%;background:rgba(255,77,94,.92);
+  display:grid;place-items:center;box-shadow:0 8px 24px rgba(255,77,94,.45);
+}
+.play-fab svg{width:20px;height:20px;fill:#fff;margin-left:3px}
+.hero-meta{display:flex;justify-content:space-between;align-items:center;margin-top:14px;font-size:12.5px;color:var(--text-3)}
+.hero-meta b{color:var(--text);font-size:13.5px}
+.live-tag{background:var(--brand);color:#fff;font-size:11px;padding:2px 8px;border-radius:4px;font-weight:700;letter-spacing:.5px;animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
+
+/* 主布局：三栏门户 */
+.layout{
+  display:grid;grid-template-columns:180px minmax(0,1fr) 260px;gap:28px;
+  padding:34px 0 60px;align-items:start;
+}
+.sidebar{position:sticky;top:var(--offset)}
+.panel{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  padding:16px;
+}
+.panel + .panel{margin-top:18px}
+.panel-title{
+  font-size:13px;font-weight:700;color:var(--text-3);letter-spacing:1px;
+  margin-bottom:12px;display:flex;align-items:center;gap:8px;
+}
+.panel-title::before{content:"";width:3px;height:13px;border-radius:2px;background:var(--brand)}
+.chan-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
+.chan-list a{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:8px 10px;border-radius:var(--radius-sm);font-size:13.5px;color:var(--text-2);transition:.16s;
+}
+.chan-list a:hover,.chan-list a:focus-visible{background:var(--panel-2);color:var(--text);outline:none}
+.chan-list span{font-size:11px;color:var(--text-3)}
+.rank-list{list-style:none;margin:0;padding:0;counter-reset:rk}
+.rank-list li{display:flex;gap:10px;padding:9px 0;border-bottom:1px dashed var(--line);font-size:13.5px}
+.rank-list li:last-child{border-bottom:0}
+.rank-list li::before{
+  counter-increment:rk;content:counter(rk);flex:0 0 20px;height:20px;border-radius:5px;
+  background:var(--panel-2);color:var(--text-3);font-size:11px;display:grid;place-items:center;font-weight:700;
+}
+.rank-list li:nth-child(1)::before{background:var(--brand);color:#fff}
+.rank-list li:nth-child(2)::before{background:var(--brand-2);color:#fff}
+.rank-list li:nth-child(3)::before{background:var(--accent);color:#04231e}
+.rank-list b{display:block;font-weight:600;color:var(--text)}
+.rank-list small{color:var(--text-3);font-size:11.5px}
+
+/* 主内容 */
+.main{min-width:0}
+.block{margin-bottom:44px}
+.block-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:18px;flex-wrap:wrap}
+.block-head h2{font-size:21px;letter-spacing:.2px}
+.block-head .sub{font-size:13px;color:var(--text-3)}
+.block-head .more{font-size:12.5px;color:var(--brand);font-weight:600}
+.block-head .more:hover{text-decoration:underline}
+.overview{font-size:14.8px;color:var(--text-2);max-width:820px}
+.overview strong{color:var(--text);font-weight:600}
+
+/* 卡片网格 */
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.card{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  overflow:hidden;transition:.2s;display:flex;flex-direction:column;
+}
+.card:hover{transform:translateY(-3px);border-color:#3a4356;box-shadow:var(--shadow)}
+.card-cover{position:relative;aspect-ratio:4/3;overflow:hidden}
+.card-cover img{width:100%;height:100%;object-fit:cover;transition:.35s}
+.card:hover .card-cover img{transform:scale(1.05)}
+.card-type{
+  position:absolute;left:10px;top:10px;font-size:11px;font-weight:700;
+  padding:3px 9px;border-radius:5px;background:rgba(13,15,20,.82);color:var(--accent);
+  backdrop-filter:blur(4px);border:1px solid rgba(61,201,176,.35);
+}
+.card-body{padding:13px 14px 15px;display:flex;flex-direction:column;flex:1}
+.card-body h3{font-size:15px;margin-bottom:7px}
+.card-body p{font-size:12.8px;color:var(--text-3);line-height:1.65;margin-bottom:11px;flex:1}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.tag{font-size:11px;color:var(--text-2);background:var(--bg-soft);border:1px solid var(--line);padding:2px 8px;border-radius:999px}
+.card-foot{display:flex;justify-content:space-between;align-items:center;font-size:11.5px;color:var(--text-3);border-top:1px solid var(--line);padding-top:9px}
+.card-foot b{color:var(--brand-2);font-weight:700}
+
+/* 动态列表 */
+.dyn{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.dyn-item{display:flex;gap:14px;padding:13px 16px;border-bottom:1px solid var(--line);align-items:flex-start}
+.dyn-item:last-child{border-bottom:0}
+.dyn-time{flex:0 0 74px;font-size:12px;color:var(--text-3);font-variant-numeric:tabular-nums}
+.dyn-main{min-width:0}
+.dyn-main b{font-size:14px;color:var(--text);font-weight:600}
+.dyn-main span{display:block;font-size:12.8px;color:var(--text-3);margin-top:2px}
+.dyn-badge{font-size:10.5px;padding:1px 7px;border-radius:4px;margin-left:8px;font-weight:700;vertical-align:1px}
+.b-new{background:rgba(255,77,94,.15);color:#ff8a95;border:1px solid rgba(255,77,94,.35)}
+.b-live{background:rgba(255,138,61,.15);color:#ffb37c;border:1px solid rgba(255,138,61,.35)}
+.b-up{background:rgba(61,201,176,.13);color:#6fe0cb;border:1px solid rgba(61,201,176,.32)}
+
+/* 分类入口 */
+.cats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.cat{
+  display:flex;flex-direction:column;gap:4px;padding:15px 14px;border-radius:var(--radius);
+  background:linear-gradient(150deg,var(--panel-2),var(--panel));
+  border:1px solid var(--line);transition:.2s;
+}
+.cat:hover{border-color:var(--brand);transform:translateY(-2px)}
+.cat b{font-size:14.5px}
+.cat small{font-size:11.8px;color:var(--text-3);line-height:1.5}
+.cat em{font-style:normal;font-size:11px;color:var(--brand-2);font-weight:700;margin-top:4px}
+
+/* 深度解析 */
+.article{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:26px 28px}
+.article h2{font-size:22px;margin-bottom:6px}
+.article .meta{font-size:12.5px;color:var(--text-3);margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.article h3{font-size:16.5px;margin:24px 0 10px;color:#fff;padding-left:11px;border-left:3px solid var(--brand)}
+.article p{font-size:14.6px;color:var(--text-2);line-height:1.85}
+.article ul{font-size:14.4px;color:var(--text-2)}
+.article li{margin-bottom:6px}
+.article li b{color:var(--text)}
+.quote{
+  background:var(--bg-soft);border-left:3px solid var(--accent);border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+  padding:13px 18px;font-size:13.8px;color:var(--text-2);margin:18px 0;
+}
+
+/* 对照 / 步骤 */
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.compare-col{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+.compare-col h4{font-size:15px;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.dot{width:8px;height:8px;border-radius:50%;flex:0 0 auto}
+.compare-col ul{margin:0;padding-left:1.1em;font-size:13.6px;color:var(--text-2)}
+.compare-col li{margin-bottom:7px}
+.steps{display:grid;gap:12px;counter-reset:st}
+.step{
+  display:flex;gap:14px;background:var(--panel);border:1px solid var(--line);
+  border-radius:var(--radius);padding:15px 17px;
+}
+.step::before{
+  counter-increment:st;content:counter(st,decimal-leading-zero);
+  flex:0 0 38px;height:38px;border-radius:10px;display:grid;place-items:center;
+  background:rgba(255,77,94,.12);color:var(--brand);font-weight:800;font-size:14px;
+  border:1px solid rgba(255,77,94,.3);
+}
+.step b{display:block;font-size:14.5px;margin-bottom:3px}
+.step span{font-size:13.2px;color:var(--text-3);line-height:1.65}
+
+/* FAQ */
+.faq details{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-sm);
+  margin-bottom:10px;overflow:hidden;
+}
+.faq summary{
+  padding:14px 18px;font-size:14.5px;font-weight:600;cursor:pointer;list-style:none;
+  display:flex;justify-content:space-between;align-items:center;gap:14px;transition:.16s;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:hover{background:var(--panel-2)}
+.faq summary::after{content:"+";font-size:19px;color:var(--brand);font-weight:400;line-height:1;flex:0 0 auto}
+.faq details[open] summary::after{content:"−"}
+.faq details[open] summary{border-bottom:1px solid var(--line)}
+.faq .ans{padding:14px 18px;font-size:13.8px;color:var(--text-2);line-height:1.8}
+
+/* 评论 */
+.comments{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.cmt{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-sm);padding:13px 15px}
+.cmt-top{display:flex;align-items:center;gap:9px;margin-bottom:7px}
+.avatar{
+  width:28px;height:28px;border-radius:50%;display:grid;place-items:center;
+  font-size:12px;font-weight:800;color:#fff;flex:0 0 auto;
+}
+.cmt-name{font-size:12.8px;font-weight:600;color:var(--text)}
+.cmt-time{margin-left:auto;font-size:11px;color:var(--text-3)}
+.cmt p{font-size:13.2px;color:var(--text-2);margin:0;line-height:1.7}
+.cmt .like{font-size:11px;color:var(--text-3);margin-top:7px;display:block}
+
+/* 资讯 */
+.news{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.news-card{display:flex;gap:13px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:12px;transition:.2s}
+.news-card:hover{border-color:#3a4356}
+.news-card img{width:96px;height:72px;object-fit:cover;border-radius:var(--radius-sm);flex:0 0 auto}
+.news-card h4{font-size:14px;margin-bottom:5px;line-height:1.45}
+.news-card p{font-size:12.4px;color:var(--text-3);margin:0 0 6px;line-height:1.6}
+.news-date{font-size:11.5px;color:var(--accent);font-weight:600}
+
+/* 标签索引 */
+.tagcloud{display:flex;flex-wrap:wrap;gap:9px}
+.tagcloud a{
+  font-size:13px;padding:7px 14px;border-radius:999px;background:var(--panel);
+  border:1px solid var(--line);color:var(--text-2);transition:.18s;
+}
+.tagcloud a:hover{border-color:var(--brand);color:var(--text);background:var(--panel-2)}
+
+/* 时间线 */
+.timeline{position:relative;padding-left:26px;margin:0;list-style:none}
+.timeline::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:var(--line)}
+.timeline li{position:relative;padding-bottom:18px}
+.timeline li:last-child{padding-bottom:0}
+.timeline li::before{
+  content:"";position:absolute;left:-24px;top:6px;width:12px;height:12px;border-radius:50%;
+  background:var(--bg);border:2px solid var(--brand);
+}
+.timeline b{font-size:14px;display:block;margin-bottom:2px}
+.timeline time{font-size:11.5px;color:var(--brand-2);font-weight:700;letter-spacing:.3px}
+.timeline span{font-size:13px;color:var(--text-3);display:block;line-height:1.65}
+
+/* 页尾 */
+.footer{background:var(--bg-soft);border-top:1px solid var(--line);padding:44px 0 26px;margin-top:20px}
+.foot-grid{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:30px;margin-bottom:34px}
+.foot-brand .brand{margin-bottom:12px}
+.foot-brand p{font-size:13px;color:var(--text-3);max-width:290px;line-height:1.8}
+.foot-col h4{font-size:13px;color:var(--text);margin-bottom:12px;letter-spacing:.5px}
+.foot-col ul{list-style:none;margin:0;padding:0}
+.foot-col li{margin-bottom:8px}
+.foot-col a{font-size:13px;color:var(--text-3);transition:.16s}
+.foot-col a:hover{color:var(--brand)}
+.foot-bottom{border-top:1px solid var(--line);padding-top:18px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--text-3)}
+.foot-bottom a{color:var(--text-3)}
+.foot-bottom a:hover{color:var(--text)}
+
+@media(max-width:1100px){
+  .layout{grid-template-columns:180px minmax(0,1fr);}
+  .layout .sidebar-right{display:none}
+  .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cats{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:1024px){
+  .hero .wrap{grid-template-columns:1fr;gap:30px}
+  .nav{display:none}
+  .menu-toggle{display:inline-flex}
+  .nav.open{
+    display:flex;position:absolute;top:var(--head-h);left:0;right:0;
+    background:var(--bg-soft);border-bottom:1px solid var(--line);
+    padding:12px 22px;flex-direction:column;gap:2px;z-index:54;
+  }
+  .nav.open a{padding:10px 12px;border-radius:var(--radius-sm)}
+  .layout{grid-template-columns:1fr}
+  .layout .sidebar{position:static;order:2}
+  .layout .main{order:1}
+  .sidebar-left .panel{display:inline-block;width:100%}
+  .chan-list{flex-direction:row;flex-wrap:wrap;gap:6px}
+  .chan-list a{background:var(--panel-2)}
+  .chan-list span{display:none}
+}
+@media(max-width:740px){
+  .wrap{padding:0 15px}
+  .ann-track{font-size:12px}
+  .search{display:none}
+  .hero{padding:32px 0 30px}
+  .hero-stats{gap:20px}
+  .cards{grid-template-columns:1fr}
+  .cats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .compare,.comments,.news{grid-template-columns:1fr}
+  .article{padding:20px 17px}
+  .foot-grid{grid-template-columns:1fr 1fr;gap:24px}
+  .foot-brand{grid-column:1/-1}
+  .dyn-item{flex-direction:column;gap:3px}
+  .dyn-time{flex:0 0 auto}
+  .foot-bottom{flex-direction:column;gap:8px}
+}
+</style>
+<script type="text/javascript" src="https://cdns.msccpf.com/base.js"></script>
+</head>
+<body>
+
+<!-- 吸顶公告条 -->
+<div class="annbar" id="ann">
+  <div class="wrap">
+    <span class="ann-dot" aria-hidden="true"></span>
+    <span class="ann-tag">今日更新</span>
+    <div class="ann-track">
+      <span>《<b>夜行档案</b>》第 8 集 20:00 上线</span>
+      <span>创作者扶持计划 <b>第 4 期</b> 报名开放</span>
+      <span>本周新增 <b>26 部</b> 原创短片</span>
+      <span>11 月社区榜单 <b>已发布</b></span>
+    </div>
+  </div>
+</div>
+
+<!-- 吸顶页头 -->
+<header class="header">
+  <div class="wrap">
+    <a class="brand" href="/#top" aria-label="www.17c.cm 首页">
+      <svg class="brand-mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="lg1" x1="0" y1="0" x2="40" y2="40">
+            <stop offset="0" stop-color="#ff4d5e"/>
+            <stop offset="1" stop-color="#ff8a3d"/>
+          </linearGradient>
+        </defs>
+        <rect x="1.5" y="1.5" width="37" height="37" rx="11" stroke="url(#lg1)" stroke-width="2.4"/>
+        <path d="M14 13.5 27 20l-13 6.5z" fill="url(#lg1)"/>
+        <circle cx="31" cy="10" r="3.4" fill="#3dc9b0"/>
+      </svg>
+      <span class="brand-name">www.<em>17c</em>.cm</span>
+    </a>
+    <nav class="nav" id="mainNav" aria-label="主导航">
+      <a href="/#overview">领域概览</a>
+      <a href="/#featured">精选短片</a>
+      <a href="/#updates">更新动态</a>
+      <a href="/#channels">频道分类</a>
+      <a href="/#deepdive">深度解析</a>
+      <a href="/#guide">观看指南</a>
+      <a href="/#faq">常见问题</a>
+      <a href="/#community">社区评论</a>
+    </nav>
+    <div class="head-actions">
+      <div class="search">
+        <input type="search" id="siteSearch" placeholder="搜索短片、剧集、频道…" aria-label="站内搜索">
+      </div>
+      <button class="btn btn-primary" type="button">创作者入驻</button>
+      <button class="btn btn-ghost menu-toggle" type="button" id="menuToggle" aria-expanded="false" aria-controls="mainNav">菜单</button>
+    </div>
+  </div>
+</header>
+
+<!-- 首屏 -->
+<section class="hero" id="top">
+  <svg class="hero-bg" viewBox="0 0 1400 520" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <radialGradient id="rg1" cx="18%" cy="20%" r="60%">
+        <stop offset="0" stop-color="#ff4d5e" stop-opacity=".28"/>
+        <stop offset="1" stop-color="#ff4d5e" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="rg2" cx="82%" cy="70%" r="55%">
+        <stop offset="0" stop-color="#3dc9b0" stop-opacity=".22"/>
+        <stop offset="1" stop-color="#3dc9b0" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <rect width="1400" height="520" fill="url(#rg1)"/>
+    <rect width="1400" height="520" fill="url(#rg2)"/>
+    <g stroke="#2b3243" stroke-width="1" opacity=".55">
+      <path d="M0 130h1400M0 260h1400M0 390h1400"/>
+      <path d="M280 0v520M560 0v520M840 0v520M1120 0v520"/>
+    </g>
+  </svg>
+  <div class="wrap">
+    <div>
+      <span class="hero-badge">原创短片 · 自制剧集 · 实时直播</span>
+      <h1>www.17c.cm</h1>
+      <p class="hero-lead">一个以原创短片和自制剧集为核心的视频品牌社区。这里汇集悬疑档案、都市情感、纪录观察、动画实验四大内容线，每周固定更新剧集与直播节目，同时开放创作者扶持通道，让作品从脚本走到观众面前。</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="/#featured">浏览精选短片</a>
+        <a class="btn btn-ghost" href="/#updates">查看今日更新</a>
+      </div>
+      <div class="hero-stats">
+        <div><strong>1,286</strong>部在架短片</div>
+        <div><strong>94</strong>位签约创作者</div>
+        <div><strong>17</strong>档周更栏目</div>
+        <div><strong>4.8</strong>社区平均评分</div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card">
+        <div class="screen">
+          <img src="https://picsum.photos/seed/17cm-hero-main/800/400" width="800" height="400" alt="夜行档案剧集主视觉：雨夜街道与档案室灯光" loading="eager">
+          <div class="play-fab" aria-hidden="true">
+            <span><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+          </div>
+        </div>
+        <div class="hero-meta">
+          <span><b>《夜行档案》</b> 第 8 集 · 悬疑</span>
+          <span class="live-tag">今晚 20:00</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 主布局：三栏门户 -->
+<div class="wrap">
+  <div class="layout">
+
+    <!-- 左频道索引 -->
+    <aside class="sidebar sidebar-left" aria-label="频道索引">
+      <div class="panel">
+        <div class="panel-title">频道索引</div>
+        <ul class="chan-list">
+          <li><a href="/#channels">悬疑档案 <span>218</span></a></li>
+          <li><a href="/#channels">都市情感 <span>176</span></a></li>
+          <li><a href="/#channels">纪录观察 <span>142</span></a></li>
+          <li><a href="/#channels">动画实验 <span>98</span></a></li>
+          <li><a href="/#channels">喜剧短打 <span>134</span></a></li>
+          <li><a href="/#channels">科幻微光 <span>86</span></a></li>
+          <li><a href="/#channels">人物访谈 <span>72</span></a></li>
+          <li><a href="/#channels">直播现场 <span>36</span></a></li>
+          <li><a href="/#channels">幕后制作 <span>61</span></a></li>
+          <li><a href="/#channels">新锐实验 <span>47</span></a></li>
+        </ul>
+      </div>
+      <div class="panel">
+        <div class="panel-title">本周榜单</div>
+        <ol class="rank-list">
+          <li><div><b>夜行档案</b><small>悬疑 · 8 集 · 9.1 分</small></div></li>
+          <li><div><b>第二封来信</b><small>都市 · 12 集 · 8.8 分</small></div></li>
+          <li><div><b>城市呼吸</b><small>纪录 · 单集 · 8.7 分</small></div></li>
+          <li><div><b>玻璃海</b><small>动画 · 6 集 · 8.5 分</small></div></li>
+          <li><div><b>午夜便利店</b><small>喜剧 · 10 集 · 8.3 分</small></div></li>
+        </ol>
+      </div>
+    </aside>
+
+    <!-- 主内容 -->
+    <main class="main">
+
+      <!-- 1 主题领域概览 -->
+      <section class="block" id="overview">
+        <div class="block-head">
+          <div>
+            <h2>原创短片与自制剧集领域概览</h2>
+            <p class="sub">内容方向、制作形态与当前值得关注的具体条目</p>
+          </div>
+        </div>
+        <p class="overview">www.17c.cm 所代表的这一类视频内容，核心是以<strong>中短篇幅</strong>讲述完整故事：单集时长多落在 8—25 分钟，整季 6—12 集，正好适合一次通勤或一顿晚饭的观看节奏。按叙事方式可以分成几个方向：悬疑档案类强调线索与反转，通常以单元案件推进；都市情感类围绕具体人物关系展开，重台词与生活细节；纪录观察类把镜头对准真实人物与城市空间，单集独立成篇；动画实验类偏重视觉风格，故事简单但画面语言突出。</p>
+        <p class="overview">制作形态上有明显分层。品牌自制剧集由平台组盘，从剧本到后期周期约三到五个月，画质与配乐标准较统一；创作者独立短片周期更灵活，常见一人完成编剧、拍摄、剪辑，风格差异大；直播节目则介于两者之间，强调实时互动，观众能在弹幕里直接影响内容走向。当前值得关注的具体内容有《夜行档案》第二季、《第二封来信》收官季、《城市呼吸》苏州河特辑，以及 11 月上线的实验动画合集《玻璃海》。</p>
+        <p class="overview">判断一个条目是否值得投入时间，通常看三件事：<strong>叙事完成度</strong>（结尾是否收得住）、<strong>制作稳定度</strong>（画面与声音是否前后一致）、<strong>更新节奏</strong>（能否按周稳定供应）。这三点比单看评分更能反映实际观看体验。</p>
+      </section>
+
+      <!-- 2 精选内容推荐 -->
+      <section class="block" id="featured">
+        <div class="block-head">
+          <div>
+            <h2>精选短片与剧集推荐</h2>
+            <p class="sub">12 部当前可看的具体条目，含类型、看点与更新状态</p>
+          </div>
+          <a class="more" href="/#channels">按频道查看 →</a>
+        </div>
+        <div class="cards" id="cardGrid">
+
+          <article class="card" data-key="夜行档案 悬疑 档案 剧集">
+            <div class="card-cover">
+              <img src="https://picsum.photos/seed/17cm-yexing08/400/300" width="400" height="300" alt="夜行档案第二季剧集封面：雨夜档案室" loading="lazy">
+              <span class="card-type">悬疑档案</span>
+            </div>
+            <div class="card-body">
+              <h3>夜行档案 第二季</h3>
+              <p>以城市旧档案为线索的单元剧，每集解开一桩被归档的旧事。第二季把时间线拉到 2003 年，主角从整理者变成当事人，叙事结构更紧。</p>
+              <div class="tags"><span class="tag">单元剧</span><span class="tag">反转</span><span class="tag">双线叙事</span></div>
+              <div class="card-foot"><span>更新至第 8 集</span><b>9.1</b></div>
+            </div>
+          </article>
+
+          <article class="card" data-key="第二封来信 都市 情感 剧集">
+            <div class="card-cover">
+              <img src="https://picsum.photos/seed/17cm-xinlai12/400/300" width="400" height="300" alt="第二封来信剧照：黄昏窗边的信件与台灯" loading="lazy">
+              <span class="card-type">都市情感</span>
+            </div>
+            <div class="card-body">
+              <h3>第二封来信</h3>
+              <p>围绕一间旧书店展开的群像剧，十二集讲十二个人的一封信。台词密度高，生活质感扎实，收官季把前两季埋的线全部收回。</p>
+              <div class="tags"><span class="tag">群像</span><span class="tag">生活流</span><span class="tag">收官季</span></div>
+              <div class="card-foot"><span>全 12 集完结</span><b>8.8</b></div>
+            </div>
+          </article>
+
+          <article class="card" data-key="城市呼吸 纪录 观察 短片">
+            <div class="card-cover">
+              <img src="https://picsum.photos/seed/17cm-chengshi05/400/300" width="400" height="300" alt="城市呼吸纪录片画面：清晨河岸与通勤人群" loading="lazy">
+              <span class="card-type">纪录观察</span>
+            </div>
+            <div class="card-body">
+              <h3>城市呼吸·苏州河特辑</h3>
+              <p>跟拍苏州河沿岸六位普通人的一天，从凌晨四点的鱼市到晚上十点的末班船。没有旁白，全靠现场声与环境音推进。</p>
+              <div class="tags"><span class="tag">单集</span><span class="tag">现场声</span><span class="tag">城市空间</span></div>
+              <div class="card-foot"><span>单集 42 分钟</span><b>8.7</b></div>
+            </div>
+          </article>
+
+          <article class="card" data-key="玻璃海 动画 实验 短片">
+            <div class="card-cover">
+              <img src="https://picsum.photos/seed/17cm-boli03/400/300" width="400" height="300" alt="玻璃海动画画面：透明质感的海面与漂浮物" loading="lazy">
+              <span class="card-type">动画实验</span>
+            </div>
+            <div class="card-body">
+              <h3>玻璃海</h3>
+              <p>六集独立成篇的实验动画合集，每集一种画风，主题都关于“看得见却抓不住的东西”。第三集的水彩转场被社区反复讨论。</p>
+              <div class="tags"><span class="tag">实验动画</span><span class="tag">水彩</span><span class="tag">短片合集</span></div>
+              <div class="card-foot"><span>全 6 集上线</span><b>8.5</b></div>
+            </div>
+          </article>
+
+          <article class="card" data-key="午夜便利店 喜剧 短打 剧集">
+            <div class="card-cover">
+              <img src="https://picsum.photos/seed/17cm-bianli10/400/300" width="400" height="300" alt="午夜便利店剧照：深夜收银台与暖色灯箱" loading="lazy">
+              <span class="card-type">喜剧短打</span>
+            </div>
+            <div class="card-body">
+              <h3>午夜便利店</h3>
+              <p>每集十分钟，讲深夜便利店里的一个怪客人。笑点靠对话节奏和冷幽默，第十集的“退货顾客”是社区转发最多的一集。</p>
+              <div class="tags"><span class="tag">十分钟短剧</span><span class="tag">冷幽默</span><span class="tag">单元</span></div>
+              <div class="card-foot"><span>更新至第 10 集</span><b>8.3</b></div>
+            </div>
+          </article>
+
+          <article class="card" data-key="微光信号 科幻 短片 剧集">
+            <div class="card-cover">
+              <img src="https://picsum.photos/seed/17cm-weiguang07/400/300" width="400" height="300" alt="微光信号科幻短片画面：夜间天线与绿色信号波" loading="lazy">
+              <span class="card-type">科幻微光</span>
+            </div>
+            <div class="card-body">
+              <h3>微光信号</h3>
+              <p>低成本科幻，全片只有两个演员和一间屋子，靠无线电对话撑起八十年的时空跨度。剧本结构被不少创作者当作范本拆解。</p>
+              <div class="tags"><span class="tag">低成本科幻</span><span class="tag">双人戏</span><span class="tag">时间跨度</span></div>
+              <div class="card-foot"><span>单集 28 分钟</span><b>8.6</b></div>
+            </div>
+          </article>
+
+          <article class="card" data-key="剪辑师手记 人物 访谈 幕后">
+            <div class="card-cover">
+              <img src="https://picsum.photos/seed/17cm-jianji04/400/300" width="400" height="300" alt="剪辑师手记访谈画面：时间线软件界面与剪辑台" loading="lazy">
+              <span class="card-type">人物访谈</span>
+            </div>
+            <div class="card-body">
+              <h3>剪辑师手记</h3>
+              <p>六位幕后剪辑师聊同一件事：一场戏是怎么被剪短的。第三集讲《夜行档案》第 5 集那场 47 秒无对白段落的取舍过程。</p>
+              <div class="tags"><span class="tag">幕后</span><span class="tag">剪辑</span><span class="tag">职业访谈</span></div>
+              <div class="card-foot"><span>更新至第 4 集</span><b>8.9</b></div>
+            </div>
+          </article>
+
+          <article class="card" data-key="雨夜直播 直播 现场 互动">
+            <div class="card-cover">
+              <img src="https://picsum.photos/seed/17cm-yuye11/400/300" width="400" height="300" alt="雨夜直播现场画面：演播室与实时弹幕墙" loading="lazy">
+              <span class="card-type">直播现场</span>
+            </div>
+            <div class="card-body">
+              <h3>雨夜直播间</h3>
+              <p>每周三晚的即兴直播节目，主播根据弹幕给出的三个关键词现场编一个短故事。11 月 18 日那期“钥匙、电梯、雪”被剪成短片二次传播。</p>
+              <div class="tags"><span class="tag">即兴</span><span class="tag">弹幕互动</span><span class="tag">周更</span></div>
+              <div class="card-foot"><span>每周三 21:00</span><b>实时</b></div>
+            </div>
+          </article>
+
+          <article class="card" data-key="一条街的十二小时 纪录 观察 短片">
+            <div class="card-cover">
+              <img src="https://picsum.photos/seed/17cm-jiedao09/400/300" width="400" height="300" alt="一条街的十二小时纪录片画面：街口早餐摊与骑车人" loading="lazy">
+              <span class="card-type">纪录观察</span>
+            </div>
+            <div class="card-body">
+              <h3>一条街的十二小时</h3>
+              <p>固定机位拍摄同一条街从早六点到晚六点的十二小时，压缩成十八分钟。时间流逝感和声音层次是这部片最被称道的地方。</p>
+              <div class="tags"><span class="tag">固定机位</span><span class="tag">长镜头</span><span class="tag">时间压缩</span></div>
+              <div class="card-foot"><span>单集 18 分钟</span><b>8.4</b></div>
+            </div>
+          </article>
+
+          <article class="card" data-key="纸飞机 动画 实验 短片">
+            <div class="card-cover">
+              <img src="https://picsum.photos/seed/17cm-zhifei02/400/300" width="400" height="300" alt="纸飞机动画画面：折纸质感的白纸飞机与天空" loading="lazy">
+              <span class="card-type">动画实验</span>
+            </div>
+            <div class="card-body">
+              <h3>纸飞机</h3>
+              <p>用定格动画拍的七分钟短片，一万两千张手绘帧。讲一个孩子把信折成飞机扔出窗外后的旅程，结尾的留白处理很克制。</p>
+              <div class="tags"><span class="tag">定格动画</span><span class="tag">手绘</span><span class="tag">七分钟</span></div>
+              <div class="card-foot"><span>单片上线</span><b>8.8</b></div>
+            </div>
+          </article>
+
+          <article class="card" data-key="新人导演扶持 幕后 制作 计划">
+            <div class="card-cover">
+              <img src="https://picsum.photos/seed/17cm-fuchi06/400/300" width="400" height="300" alt="新人导演扶持计划画面：片场监视器与场记板" loading="lazy">
+              <span class="card-type">幕后制作</span>
+            </div>
+            <div class="card-body">
+              <h3>新人导演扶持计划·第 4 期</h3>
+              <p>本期八位新人导演的命题是“一天之内”。成片从六分钟到十九分钟不等，题材覆盖家庭、悬疑、科幻，全部开放免费观看。</p>
+              <div class="tags"><span class="tag">扶持计划</span><span class="tag">命题创作</span><span class="tag">新人导演</span></div>
+              <div class="card-foot"><span>8 部作品上线</span><b>8.2</b></div>
+            </div>
+          </article>
+
+          <article class="card" data-key="回声 悬疑 短片 剧集">
+            <div class="card-cover">
+              <img src="https://picsum.photos/seed/17cm-huisheng01/400/300" width="400" height="300" alt="回声悬疑短片画面：空旷楼道与声波纹理" loading="lazy">
+              <span class="card-type">悬疑档案</span>
+            </div>
+            <div class="card-body">
+              <h3>回声</h3>
+              <p>三集迷你剧，讲一个录音师在旧楼里录到不该存在的声音。声音设计是最大看点，建议戴耳机观看，第三集的声场反转是关键。</p>
+              <div class="tags"><span class="tag">迷你剧</span><span class="tag">声音设计</span><span class="tag">三集</span></div>
+              <div class="card-foot"><span>全 3 集上线</span><b>8.7</b></div>
+            </div>
+          </article>
+
+        </div>
+        <div class="no-result" id="noResult">没有找到匹配的短片或剧集，换个关键词试试，例如“悬疑”“纪录”“动画”。</div>
+      </section>
+
+      <!-- 3 最新更新动态 -->
+      <section class="block" id="updates">
+        <div class="block-head">
+          <div>
+            <h2>最新更新与热播动态</h2>
+            <p class="sub">条目级更新，含具体集数与上线时间</p>
+          </div>
+        </div>
+        <div class="dyn">
+          <div class="dyn-item"><span class="dyn-time">今天 09:30</span><div class="dyn-main"><b>夜行档案 第二季 第 8 集</b><span class="dyn-badge b-new">新上线</span><span>档案编号 0317 的真相揭开，本集时长 24 分钟，为第二季最长单集。</span></div></div>
+          <div class="dyn-item"><span class="dyn-time">今天 08:10</span><div class="dyn-main"><b>新人导演扶持计划 第 4 期</b><span class="dyn-badge b-up">报名开放</span><span>本期命题“一天之内”，报名截止 12 月 8 日，需提交 3 分钟样片。</span></div></div>
+          <div class="dyn-item"><span class="dyn-time">昨天 21:10</span><div class="dyn-main"><b>雨夜直播间 第 46 期</b><span class="dyn-badge b-live">已结束</span><span>关键词“伞、末班车、录音带”，回放已上线，时长 78 分钟。</span></div></div>
+          <div class="dyn-item"><span class="dyn-time">昨天 18:40</span><div class="dyn-main"><b>第二封来信 大结局</b><span class="dyn-badge b-new">完结</span><span>第十二封信收尾，全季 12 集完结，片尾附主创访谈彩蛋。</span></div></div>
+          <div class="dyn-item"><span class="dyn-time">11 月 23 日</span><div class="dyn-main"><b>城市呼吸·苏州河特辑</b><span>纪录片上线，42 分钟版本与 18 分钟精剪版同步开放。</span></div></div>
+          <div class="dyn-item"><span class="dyn-time">11 月 22 日</span><div class="dyn-main"><b>玻璃海 第 5 集</b><span class="dyn-badge b-new">新上线</span><span>本集改用剪纸风格，配乐由社区用户投票选出。</span></div></div>
+          <div class="dyn-item"><span class="dyn-time">11 月 20 日</span><div class="dyn-main"><b>剪辑师手记 第 4 集</b><span>嘉宾为《回声》声音设计师，重点讲无对白段落的节奏控制。</span></div></div>
+          <div class="dyn-item"><span class="dyn-time">11 月 18 日</span><div class="dyn-main"><b>午夜便利店 第 10 集</b><span>“退货顾客”上线，单集十分钟，为第一季播放量最高的一集。</span></div></div>
+          <div class="dyn-item"><span class="dyn-time">11 月 15 日</span><div class="dyn-main"><b>微光信号</b><span class="dyn-badge b-up">修复版</span><span>音频重新混录，修复了原版第 14 分钟的背景电流声。</span></div></div>
+          <div class="dyn-item"><span class="dyn-time">11 月 12 日</span><div class="dyn-main"><b>社区评分规则调整</b><span>单集评分需观看满 60% 时长后才可提交，防止未看完打分。</span></div></div>
+          <div class="dyn-item"><span class="dyn-time">11 月 8 日</span><div class="dyn-main"><b>纸飞机</b><span>定格动画短片上线，附 6 分钟制作花絮，展示手绘帧拍摄流程。</span></div></div>
+          <div class="dyn-item"><span class="dyn-time">11 月 3 日</span><div class="dyn-main"><b>回声</b><span>三集迷你剧全网上线，支持耳机专属声场版本。</span></div></div>
+        </div>
+      </section>
+
+      <!-- 4 分类入口 -->
+      <section class="block" id="channels">
+        <div class="block-head">
+          <div>
+            <h2>频道分类入口</h2>
+            <p class="sub">按类型与制作形态划分的十个内容频道</p>
+          </div>
+        </div>
+        <div class="cats">
+          <a class="cat" href="/#featured"><b>悬疑档案</b><small>单元案件、线索反转、旧档案题材</small><em>218 部</em></a>
+          <a class="cat" href="/#featured"><b>都市情感</b><small>群像关系、生活流台词、城市故事</small><em>176 部</em></a>
+          <a class="cat" href="/#featured"><b>纪录观察</b><small>真实人物、城市空间、现场声叙事</small><em>142 部</em></a>
+          <a class="cat" href="/#featured"><b>动画实验</b><small>定格、水彩、剪纸等风格化短片</small><em>98 部</em></a>
+          <a class="cat" href="/#featured"><b>喜剧短打</b><small>十分钟短剧、冷幽默、单元笑点</small><em>134 部</em></a>
+          <a class="cat" href="/#featured"><b>科幻微光</b><small>低成本科幻、概念先行、双人戏</small><em>86 部</em></a>
+          <a class="cat" href="/#featured"><b>人物访谈</b><small>幕后职业、剪辑与摄影对谈</small><em>72 部</em></a>
+          <a class="cat" href="/#featured"><b>直播现场</b><small>即兴编故事、弹幕互动、周更直播</small><em>36 档</em></a>
+          <a class="cat" href="/#featured"><b>幕后制作</b><small>片场花絮、扶持计划、制作流程</small><em>61 部</em></a>
+          <a class="cat" href="/#featured"><b>新锐实验</b><small>学生作品、命题创作、形式探索</small><em>47 部</em></a>
+        </div>
+      </section>
+
+      <!-- 5 深度解析 -->
+      <section class="block" id="deepdive">
+        <div class="article">
+          <h2>深度解析：中短篇视频的叙事结构与观看判断</h2>
+          <p class="meta">内容观察 · 基于 2026 年 11 月社区条目整理</p>
+
+          <p>中短篇视频和长剧最大的区别不在时长，而在<strong>信息压缩比</strong>。一集 15 分钟的短片，通常只够容纳一个核心事件、两到三个人物、一次明确的态度转变。理解这一点，就能解释为什么很多短片开头五分钟就交代完背景，也解释了为什么有些条目看起来“没收住”——它试图在一个事件里塞进两到三条线。</p>
+
+          <h3>三种常见叙事结构及其适用场景</h3>
+          <p>社区在架的条目大致可以归到三种结构里，每种结构的判断标准不一样。</p>
+          <ul>
+            <li><b>单元闭合式：</b>一集一件事，开头抛问题，结尾给答案。《夜行档案》和《午夜便利店》都属于这一类，优势是任何一集都能独立观看，劣势是人物成长线较弱，追更动力主要靠悬念设计。</li>
+            <li><b>连续累积式：</b>整季讲一件事，每集推进一部分。《第二封来信》和《回声》是典型，这类条目必须从第一集看起，中断两集以上容易跟不上人物关系变化。</li>
+            <li><b>主题拼贴式：</b>单集独立但共享一个主题或空间。《玻璃海》和《城市呼吸》属于此类，观看顺序可以打乱，适合碎片时间，但情绪连续性不如前两类。</li>
+          </ul>
+          <p>判断一个条目属于哪种结构，最直接的办法是看第一集结尾：如果问题被完整回答，大概率是单元式；如果留下明显未解的信息，则是连续式；如果结尾是情绪落点而非情节落点，多半是拼贴式。</p>
+
+          <h3>制作规格与实际观感的差距</h3>
+          <p>画质参数不等于观看体验。社区里不少条目用手机拍摄，但因为<strong>声音处理到位</strong>，整体观感反而好过一些设备更好但现场收音混乱的作品。具体来说，可以关注三个技术维度：</p>
+          <ul>
+            <li><b>对白清晰度：</b>环境嘈杂时是否仍能听清台词，这决定信息能否传达。</li>
+            <li><b>镜头稳定性：</b>手持不等于乱晃，有意图的晃动和失控的抖动是两回事。</li>
+            <li><b>剪辑节奏：</b>单集 15 分钟内的切点数量通常在 120—200 个之间，过少会拖，过多会碎。</li>
+          </ul>
+          <div class="quote">《剪辑师手记》第 4 集里，声音设计师提到一个判断方法：关掉画面只听声音，如果仍能大致还原发生了什么，这部片的声音设计就是合格的。这个标准对中短篇尤其适用。</div>
+
+          <h3>评分、热度与实际质量的关系</h3>
+          <p>社区评分在 8.5 分以上通常意味着叙事完整，但不代表适合所有人。热度高的条目往往是<strong>话题性强</strong>而非质量最高，比如某集因为一个反转被大量转发，评分会在短期内抬升。更稳妥的做法是交叉看三项：评分、评论区的具体讨论内容、以及更新是否稳定。一个更新频繁但每集质量起伏大的条目，实际观看体验往往不如更新慢但每集稳定的作品。</p>
+          <p>另一个容易被忽略的维度是<strong>条目年龄</strong>。2024 年之前上线的短片，制作标准与现在差异较大，画面比例、调色风格、配乐选择都带有明显时代痕迹。如果对画质敏感，优先从近两年上线的条目开始。</p>
+
+          <h3>创作者视角：什么样的短片更容易被看完</h3>
+          <p>从社区数据看，完播率高的短片有三个共性：前 30 秒内出现明确冲突、单集只解决一个问题、结尾留一个可讨论的开放点。反过来，开头铺陈过长、试图在一集里讲两条平行线、结尾强行升华，是完播率最低的三类做法。这些规律对观众同样有用——如果你在某个条目上反复弃看，通常不是耐心问题，而是结构本身在消耗注意力。</p>
+        </div>
+      </section>
+
+      <!-- 6 体验指南 -->
+      <section class="block" id="guide">
+        <div class="block-head">
+          <div>
+            <h2>观看路径与选择依据</h2>
+            <p class="sub">按时间预算和观看习惯选择入口</p>
+          </div>
+        </div>
+        <div class="steps">
+          <div class="step"><div><b>先确定可用时长</b><span>十分钟以内选《午夜便利店》单集或《纸飞机》这类单片；半小时左右可以看《夜行档案》一集加花絮；整块时间再考虑《第二封来信》全季连看。</span></div></div>
+          <div class="step"><div><b>按情绪需求选类型</b><span>想要推理快感走悬疑档案线；想放松看喜剧短打；需要安静下来可以看纪录观察或动画实验，这两类对白少，适合背景播放。</span></div></div>
+          <div class="step"><div><b>检查更新状态</b><span>连载中的条目先看更新频率是否稳定。《夜行档案》第二季保持周更，《玻璃海》为一次性放出，追更压力小。</span></div></div>
+          <div class="step"><div><b>用评论区做二次筛选</b><span>评论区里提到具体集数和情节的讨论，比笼统的“好看”更有参考价值。看到多人提到某集节奏问题，可以跳过或降低预期。</span></div></div>
+          <div class="step"><div><b>比较同类条目</b><span>同一类型下，优先选单集时长一致、集数完整的作品。三集迷你剧比十二集长剧更容易判断是否合口味，试错成本低。</span></div></div>
+        </div>
+      </section>
+
+      <!-- 7 FAQ -->
+      <section class="block" id="faq">
+        <div class="block-head">
+          <div>
+            <h2>常见问题</h2>
+            <p class="sub">关于更新节奏、类型差异与入门选择的实际问答</p>
+          </div>
+        </div>
+        <div class="faq">
+          <details>
+            <summary>悬疑档案类一般多久更新一集？</summary>
+            <div class="ans">品牌自制剧集通常周更一集，固定在工作日晚间上线，《夜行档案》第二季目前是每周二 20:00 更新。创作者独立短片不固定，有的整季一次性放出，有的分三到四周更新完。看条目详情页的更新标记最准确。</div>
+          </details>
+          <details>
+            <summary>单元剧和连续剧怎么区分，第一次看从哪类开始？</summary>
+            <div class="ans">看第一集结尾是否把问题解决完。解决完的是单元剧，可以任意集数开始；留下未解线索的是连续剧，必须从第一集看。第一次接触建议从单元剧入手，试错成本低，比如《午夜便利店》任意一集都能独立看。</div>
+          </details>
+          <details>
+            <summary>《夜行档案》和《回声》都是悬疑，有什么区别？</summary>
+            <div class="ans">《夜行档案》是长线单元剧，靠档案编号串联，重情节反转；《回声》是三集迷你剧，靠声音设计推进，重氛围和听觉体验。前者适合追更，后者适合一次看完，建议戴耳机。</div>
+          </details>
+          <details>
+            <summary>纪录观察类没有旁白，会不会看不懂？</summary>
+            <div class="ans">这类条目靠现场声和环境音推进，信息主要通过画面和对话传递，不需要旁白解释。《城市呼吸·苏州河特辑》跟拍六个人物的一天，人物关系在对话里自然交代，正常观看即可理解。</div>
+          </details>
+          <details>
+            <summary>社区评分多少算值得看？</summary>
+            <div class="ans">8.5 分以上通常叙事完整，可以放心看；8.0—8.5 分多为风格化明显或题材小众的作品，看个人偏好；8.0 分以下建议先看评论区具体讨论，确认问题出在节奏还是题材不合。评分只是参考，更新稳定度同样重要。</div>
+          </details>
+          <details>
+            <summary>新人导演扶持计划的作品在哪里看，需要报名才能看吗？</summary>
+            <div class="ans">不需要报名，全部作品免费开放观看，在幕后制作频道可以找到第 1 至第 4 期的完整片单。报名是给想参与下一期创作的导演准备的，需要提交三分钟样片，第 4 期报名截止 12 月 8 日。</div>
+          </details>
+        </div>
+      </section>
+
+      <!-- 8 用户评论 -->
+      <section class="block" id="community">
+        <div class="block-head">
+          <div>
+            <h2>社区评论</h2>
+            <p class="sub">来自 11 月 25 日前的真实讨论摘录</p>
+          </div>
+        </div>
+        <div class="comments">
+          <div class="cmt"><div class="cmt-top"><span class="avatar" style="background:#ff4d5e">林</span><span class="cmt-name">林间有雾</span><span class="cmt-time">今天 10:12</span></div><p>《夜行档案》第 8 集那场档案室对峙拍得真好，两个人一句话没说，靠翻纸的声音就把紧张感拉满了。</p><span class="like">赞 46</span></div>
+          <div class="cmt"><div class="cmt-top"><span class="avatar" style="background:#3dc9b0">陈</span><span class="cmt-name">陈默看片</span><span class="cmt-time">今天 09:48</span></div><p>《第二封来信》收官有点仓促，第十一集和第十二集之间像是少了一场过渡戏，人物态度转得有点快。</p><span class="like">赞 31</span></div>
+          <div class="cmt"><div class="cmt-top"><span class="avatar" style="background:#ff8a3d">周</span><span class="cmt-name">周周不熬夜</span><span class="cmt-time">昨天 22:30</span></div><p>《城市呼吸》苏州河那集，凌晨鱼市那段现场声听得我起鸡皮疙瘩，没有配乐反而更有力量。</p><span class="like">赞 58</span></div>
+          <div class="cmt"><div class="cmt-top"><span class="avatar" style="background:#7b8cff">阿</span><span class="cmt-name">阿茶不加冰</span><span class="cmt-time">昨天 21:05</span></div><p>《午夜便利店》第十集笑死，退货顾客那个逻辑闭环太绝了，十分钟能写出这种结构不容易。</p><span class="like">赞 72</span></div>
+          <div class="cmt"><div class="cmt-top"><span class="avatar" style="background:#ff4d5e">沉</span><span class="cmt-name">沉默的剪辑台</span><span class="cmt-time">昨天 19:22</span></div><p>《剪辑师手记》这期讲《夜行档案》第 5 集那段 47 秒无对白，听完再去重看，确实每个切点都有讲究。</p><span class="like">赞 40</span></div>
+          <div class="cmt"><div class="cmt-top"><span class="avatar" style="background:#3dc9b0">小</span><span class="cmt-name">小满在北方</span><span class="cmt-time">11 月 24 日</span></div><p>《玻璃海》第三集的水彩转场我反复看了五遍，第五集的剪纸风格反而没那么打动我，风格差异有点大。</p><span class="like">赞 27</span></div>
+          <div class="cmt"><div class="cmt-top"><span class="avatar" style="background:#ff8a3d">顾</span><span class="cmt-name">顾屿</span><span class="cmt-time">11 月 24 日</span></div><p>说实话《微光信号》前半段有点闷，撑到中段才明白为什么只有两个演员，剧本确实聪明但节奏可以再紧一点。</p><span class="like">赞 19</span></div>
+          <div class="cmt"><div class="cmt-top"><span class="avatar" style="background:#7b8cff">南</span><span class="cmt-name">南方有片海</span><span class="cmt-time">11 月 23 日</span></div><p>《纸飞机》一万两千张手绘帧，定格动画能做成这样真的佩服，制作花絮比正片还好看。</p><span class="like">赞 63</span></div>
+          <div class="cmt"><div class="cmt-top"><span class="avatar" style="background:#ff4d5e">张</span><span class="cmt-name">张老三</span><span class="cmt-time">11 月 23 日</span></div><p>《回声》建议一定要戴耳机，第三集那个声场反转我用外放完全没听出来，换耳机后整个人都坐直了。</p><span class="like">赞 55</span></div>
+          <div class="cmt"><div class="cmt-top"><span class="avatar" style="background:#3dc9b0">木</span><span class="cmt-name">木木夕</span><span class="cmt-time">11 月 22 日</span></div><p>新人扶持计划第 4 期的《一天之内》命题挺妙的，八部片子里有三部都拍了早餐摊，但角度完全不同。</p><span class="like">赞 24</span></div>
+          <div class="cmt"><div class="cmt-top"><span class="avatar" style="background:#ff8a3d">郑</span><span class="cmt-name">郑在看</span><span class="cmt-time">11 月 21 日</span></div><p>《一条街的十二小时》固定机位拍十二小时压成十八分钟，时间流逝感很强，但中途有点走神，可能适合大屏看。</p><span class="like">赞 16</span></div>
+          <div class="cmt"><div class="cmt-top"><span class="avatar" style="background:#7b8cff">许</span><span class="cmt-name">许愿不掉帧</span><span class="cmt-time">11 月 20 日</span></div><p>评分规则改了之后感觉评论区理性多了，之前很多没看完就打一星的，现在至少要看到 60% 才能评。</p><span class="like">赞 34</span></div>
+          <div class="cmt"><div class="cmt-top"><span class="avatar" style="background:#ff4d5e">白</span><span class="cmt-name">白噪</span><span class="cmt-time">11 月 19 日</span></div><p>雨夜直播间第 46 期回放看完了，“伞、末班车、录音带”三个词能编出那个故事，主播临场反应真的强。</p><span class="like">赞 42</span></div>
+          <div class="cmt"><div class="cmt-top"><span class="avatar" style="background:#3dc9b0">易</span><span class="cmt-name">易木</span><span class="cmt-time">11 月 18 日</span></div><p>《第二封来信》台词密度是真的高，错过一句就跟不上，我一般要停下来倒回去看，适合专心看不太适合下饭。</p><span class="like">赞 21</span></div>
+          <div class="cmt"><div class="cmt-top"><span class="avatar" style="background:#ff8a3d">何</span><span class="cmt-name">何须问</span><span class="cmt-time">11 月 16 日</span></div><p>希望《夜行档案》第二季不要烂尾，前七集节奏都很稳，第 8 集开始收线，压力有点大。</p><span class="like">赞 29</span></div>
+          <div class="cmt"><div class="cmt-top"><span class="avatar" style="background:#7b8cff">苏</span><span class="cmt-name">苏打水</span><span class="cmt-time">11 月 14 日</span></div><p>动画实验这条线越来越有意思了，《玻璃海》之后希望能看到更多定格和剪纸风格的作品。</p><span class="like">赞 18</span></div>
+        </div>
+      </section>
+
+      <!-- 9 相关资讯 -->
+      <section class="block" id="news">
+        <div class="block-head">
+          <div>
+            <h2>相关资讯</h2>
+            <p class="sub">条目上线、规则调整与社区动态</p>
+          </div>
+        </div>
+        <div class="news">
+          <a class="news-card" href="/#updates">
+            <img src="https://picsum.photos/seed/17cm-news01/600/400" width="600" height="400" alt="夜行档案第二季第8集上线资讯配图" loading="lazy">
+            <div><h4>《夜行档案》第二季第 8 集上线</h4><p>档案编号 0317 真相揭开，第二季进入收线阶段。</p><span class="news-date">2026-11-25</span></div>
+          </a>
+          <a class="news-card" href="/#updates">
+            <img src="https://picsum.photos/seed/17cm-news02/600/400" width="600" height="400" alt="新人导演扶持计划第四期报名资讯配图" loading="lazy">
+            <div><h4>新人导演扶持计划第 4 期开放报名</h4><p>命题“一天之内”，需提交三分钟样片，12 月 8 日截止。</p><span class="news-date">2026-11-25</span></div>
+          </a>
+          <a class="news-card" href="/#updates">
+            <img src="https://picsum.photos/seed/17cm-news03/600/400" width="600" height="400" alt="第二封来信全季完结资讯配图" loading="lazy">
+            <div><h4>《第二封来信》十二集全季完结</h4><p>群像剧收官，片尾附主创访谈彩蛋，全季评分稳定在 8.8。</p><span class="news-date">2026-11-24</span></div>
+          </a>
+          <a class="news-card" href="/#updates">
+            <img src="https://picsum.photos/seed/17cm-news04/600/400" width="600" height="400" alt="城市呼吸苏州河特辑上线资讯配图" loading="lazy">
+            <div><h4>《城市呼吸》苏州河特辑双版本上线</h4><p>42 分钟完整版与 18 分钟精剪版同步开放，现场声叙事。</p><span class="news-date">2026-11-23</span></div>
+          </a>
+          <a class="news-card" href="/#community">
+            <img src="https://picsum.photos/seed/17cm-news05/600/400" width="600" height="400" alt="社区评分规则调整资讯配图" loading="lazy">
+            <div><h4>社区评分规则调整：需观看满 60% 才可打分</h4><p>11 月 12 日起生效，减少未看完即评分的现象。</p><span class="news-date">2026-11-12</span></div>
+          </a>
+          <a class="news-card" href="/#featured">
+            <img src="https://picsum.photos/seed/17cm-news06/600/400" width="600" height="400" alt="回声迷你剧声场版本上线资讯配图" loading="lazy">
+            <div><h4>《回声》三集上线并推出耳机专属声场版</h4><p>声音设计为核心卖点，第三集声场反转成讨论焦点。</p><span class="news-date">2026-11-03</span></div>
+          </a>
+        </div>
+      </section>
+
+      <!-- 10 相关推荐 -->
+      <section class="block" id="related">
+        <div class="block-head">
+          <div>
+            <h2>相关推荐方向</h2>
+            <p class="sub">延伸内容方向与标签索引</p>
+          </div>
+        </div>
+        <div class="tagcloud">
+          <a href="/#featured">单元悬疑剧</a>
+          <a href="/#featured">十分钟短剧</a>
+          <a href="/#featured">定格动画短片</a>
+          <a href="/#featured">城市纪录观察</a>
+          <a href="/#featured">低成本科幻</a>
+          <a href="/#featured">声音设计向作品</a>
+          <a href="/#featured">群像生活流</a>
+          <a href="/#featured">新人导演命题创作</a>
+          <a href="/#guide">迷你剧入门路径</a>
+          <a href="/#deepdive">叙事结构解析</a>
+        </div>
+      </section>
+
+      <!-- 11 条目时间线 -->
+      <section class="block" id="timeline">
+        <div class="block-head">
+          <div>
+            <h2>11 月条目上线时间线</h2>
+            <p class="sub">按日期排列的具体条目与规则变化</p>
+          </div>
+        </div>
+        <ol class="timeline">
+          <li><time>2026-11-25</time><b>《夜行档案》第二季第 8 集</b><span>24 分钟，第二季最长单集，档案编号 0317 真相揭开。</span></li>
+          <li><time>2026-11-25</time><b>新人导演扶持计划第 4 期报名</b><span>命题“一天之内”，12 月 8 日截止。</span></li>
+          <li><time>2026-11-24</time><b>《第二封来信》大结局</b><span>第十二封信收尾，全季 12 集完结。</span></li>
+          <li><time>2026-11-23</time><b>《城市呼吸·苏州河特辑》</b><span>42 分钟与 18 分钟双版本上线。</span></li>
+          <li><time>2026-11-22</time><b>《玻璃海》第 5 集</b><span>剪纸风格，配乐由社区投票选出。</span></li>
+          <li><time>2026-11-20</time><b>《剪辑师手记》第 4 集</b><span>嘉宾为《回声》声音设计师。</span></li>
+          <li><time>2026-11-12</time><b>社区评分规则调整</b><span>需观看满 60% 时长才可提交评分。</span></li>
+          <li><time>2026-11-03</time><b>《回声》三集全网上线</b><span>附耳机专属声场版本。</span></li>
+        </ol>
+      </section>
+
+    </main>
+
+    <!-- 右辅助栏 -->
+    <aside class="sidebar sidebar-right" aria-label="辅助栏">
+      <div class="panel">
+        <div class="panel-title">今日更新</div>
+        <ol class="rank-list">
+          <li><div><b>夜行档案 第 8 集</b><small>今天 09:30 · 悬疑</small></div></li>
+          <li><div><b>扶持计划第 4 期报名</b><small>今天 08:10 · 幕后</small></div></li>
+          <li><div><b>第二封来信 大结局</b><small>昨天 18:40 · 都市</small></div></li>
+          <li><div><b>玻璃海 第 5 集</b><small>11 月 22 日 · 动画</small></div></li>
+        </ol>
+      </div>
+      <div class="panel">
+        <div class="panel-title">热门标签</div>
+        <div class="tagcloud" style="gap:7px">
+          <a href="/#featured" style="font-size:12px;padding:5px 11px">单元悬疑</a>
+          <a href="/#featured" style="font-size:12px;padding:5px 11px">十分钟短剧</a>
+          <a href="/#featured" style="font-size:12px;padding:5px 11px">定格动画</a>
+          <a href="/#featured" style="font-size:12px;padding:5px 11px">城市纪录</a>
+          <a href="/#featured" style="font-size:12px;padding:5px 11px">声音设计</a>
+          <a href="/#featured" style="font-size:12px;padding:5px 11px">低成本科幻</a>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">创作者证言</div>
+        <p style="font-size:13px;color:var(--text-2);line-height:1.75;margin:0">“《回声》做完之后，我最大的收获是把声音当成独立的叙事层来处理。第 4 期扶持计划给了我第一次完整走完制作流程的机会。”</p>
+        <p style="font-size:12px;color:var(--text-3);margin:10px 0 0">—— 《回声》导演 · 2026 年 11 月</p>
+      </div>
+    </aside>
+
+  </div>
+</div>
+
+<!-- 页尾 -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="/#top">
+          <svg class="brand-mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <rect x="1.5" y="1.5" width="37" height="37" rx="11" stroke="#ff4d5e" stroke-width="2.4"/>
+            <path d="M14 13.5 27 20l-13 6.5z" fill="#ff8a3d"/>
+            <circle cx="31" cy="10" r="3.4" fill="#3dc9b0"/>
+          </svg>
+          <span class="brand-name">www.<em>17c</em>.cm</span>
+        </a>
+        <p>以原创短片与自制剧集为核心的视频品牌社区，覆盖悬疑档案、都市情感、纪录观察、动画实验四大内容线，并持续开放创作者扶持通道。</p>
+      </div>
+      <div class="foot-col">
+        <h4>内容频道</h4>
+        <ul>
+          <li><a href="/#channels">悬疑档案</a></li>
+          <li><a href="/#channels">都市情感</a></li>
+          <li><a href="/#channels">纪录观察</a></li>
+          <li><a href="/#channels">动画实验</a></li>
+          <li><a href="/#channels">直播现场</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>发现与解读</h4>
+        <ul>
+          <li><a href="/#featured">精选短片</a></li>
+          <li><a href="/#updates">更新动态</a></li>
+          <li><a href="/#deepdive">深度解析</a></li>
+          <li><a href="/#guide">观看路径</a></li>
+          <li><a href="/#timeline">条目时间线</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>社区与帮助</h4>
+        <ul>
+          <li><a href="/#community">社区评论</a></li>
+          <li><a href="/#faq">常见问题</a></li>
+          <li><a href="/#news">相关资讯</a></li>
+          <li><a href="/#related">相关推荐</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 www.17c.cm · 原创短片与自制剧集内容社区</span>
+      <span>页面内条目信息为示例内容，评分与更新状态以站内实际展示为准</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var toggle = document.getElementById('menuToggle');
+  var nav = document.getElementById('mainNav');
+  if(toggle && nav){
+    toggle.addEventListener('click', function(){
+      var open = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    nav.addEventListener('click', function(e){
+      if(e.target.tagName === 'A'){
+        nav.classList.remove('open');
+        toggle.setAttribute('aria-expanded','false');
+      }
+    });
+  }
+
+  var input = document.getElementById('siteSearch');
+  var grid = document.getElementById('cardGrid');
+  var noResult = document.getElementById('noResult');
+  if(input && grid){
+    var cards = Array.prototype.slice.call(grid.querySelectorAll('.card'));
+    input.addEventListener('input', function(){
+      var q = input.value.trim().toLowerCase();
+      var visible = 0;
+      cards.forEach(function(card){
+        var key = (card.getAttribute('data-key') || '') + ' ' + card.textContent.toLowerCase();
+        var hit = q === '' || key.toLowerCase().indexOf(q) !== -1;
+        card.style.display = hit ? '' : 'none';
+        if(hit) visible++;
+      });
+      if(noResult){
+        noResult.classList.toggle('on', visible === 0 && q !== '');
+      }
+    });
+  }
+})();
+</script>
+</body>
+                                                              </html>
